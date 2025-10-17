@@ -42,11 +42,9 @@ See the [Contributing Guidelines](/CONTRIBUTING.md).
 ### Table
 Name | GitHub ID | Group Name |
 ------|-----------|------------|
-
  Choi Ju Young | @ichbinju0 | Kka-Mong-Ju |
  Park So Yeon  | @so-yeon-333 | Kka-Mong-Ju |
  Kim Gyeong Yoon | @Gyeongyoon | Kka-Mong-Ju |
-
  Kim Geon     | @GeonKim0422 | Team F1 |
  Kim Sinwoo     | @yourgithubid | Team F1 |
  Kim Junu     | @MelonChicken | Team F1 |
