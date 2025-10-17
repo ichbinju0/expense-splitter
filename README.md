@@ -42,6 +42,9 @@ See the [Contributing Guidelines](/CONTRIBUTING.md).
 ### Table
 Name | GitHub ID | Group Name |
 ------|-----------|------------|
+ Kim Geon     | @GeonKim0422 | Team F1 |
+ Kim Sinwoo     | @yourgithubid | Team F1 |
+ Kim Junu     | @MelonChicken | Team F1 |
   ParkMinjoon     | ERE252 | OpenMinded |
  HongJunsoo     | Jeffrey-Hong1005 |  OpenMinded |
  LeeSeongbin     | @yeonlimee2 |  OpenMinded |
