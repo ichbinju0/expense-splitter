@@ -42,6 +42,9 @@ See the [Contributing Guidelines](/CONTRIBUTING.md).
 ### Table
 Name | GitHub ID | Group Name |
 ------|-----------|------------|
+ Lim Donghyun    | @ehdgus4173 | Kim Byungchan  |
+ Kim Junseop     | @Junseop1228 | Kim Byungchan |
+ Byungchan Kim   | @byungchan3077 | Kim Byungchan |
  Choi Ju Young | @ichbinju0 | Kka-Mong-Ju |
  Park So Yeon  | @so-yeon-333 | Kka-Mong-Ju |
  Kim Gyeong Yoon | @Gyeongyoon | Kka-Mong-Ju |
