@@ -42,6 +42,9 @@ See the [Contributing Guidelines](/CONTRIBUTING.md).
 ### Table
 Name | GitHub ID | Group Name |
 ------|-----------|------------|
+ Oh Kyung Hun  | @ohkyounghun  | Doosan Bears |
+ Kim Gun Woo   | @gunuzello    | Doosan Bears |
+ Kwon Do Hun   | @kwon-dohun   | Doosan Bears |
  Kwon Sihyun | @bbirribbarribbo | P.P.G |
  Lee Jiseop  | @ljseop1030 | P.P.G |
  Na Hyanghee | @ihh25 | P.P.G |
