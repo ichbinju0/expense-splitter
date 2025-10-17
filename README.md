@@ -42,10 +42,9 @@ See the [Contributing Guidelines](/CONTRIBUTING.md).
 ### Table
 Name | GitHub ID | Group Name |
 ------|-----------|------------|
- Josue Obregon | @jobregon1212 | Group Alpha (example) |
- YOUR_NAME     | @yourgithubid | YOUR_GROUP_NAME |
- YOUR_NAME     | @yourgithubid | YOUR_GROUP_NAME |
- YOUR_NAME     | @yourgithubid | YOUR_GROUP_NAME |
+ Choi Ju Young | @ichbinju0 | Kka-Mong-Ju |
+ Park So Yeon  | @so-yeon-333 | Kka-Mong-Ju |
+ Kim Gyeong Yoon | @Gyeongyoon | Kka-Mong-Ju |
 
 ---
 
