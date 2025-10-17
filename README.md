@@ -42,6 +42,9 @@ See the [Contributing Guidelines](/CONTRIBUTING.md).
 ### Table
 Name | GitHub ID | Group Name |
 ------|-----------|------------|
+  ParkMinjoon     | ERE252 | OpenMinded |
+ HongJunsoo     | Jeffrey-Hong1005 |  OpenMinded |
+ LeeSeongbin     | @yeonlimee2 |  OpenMinded |
   Kim Hyewon     | @Kimhyewon0621 | githero |
  Kwon Ayeong     | @AyeongKwon | githero |
  Kim Mingyeong     | @mingyeonggg | githero |
