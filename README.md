@@ -42,6 +42,9 @@ See the [Contributing Guidelines](/CONTRIBUTING.md).
 ### Table
 Name | GitHub ID | Group Name |
 ------|-----------|------------|
+  Kim Hyewon     | @Kimhyewon0621 | githero |
+ Kwon Ayeong     | @AyeongKwon | githero |
+ Kim Mingyeong     | @mingyeonggg | githero |
  Oh Kyung Hun  | @ohkyounghun  | Doosan Bears |
  Kim Gun Woo   | @gunuzello    | Doosan Bears |
  Kwon Do Hun   | @kwon-dohun   | Doosan Bears |
