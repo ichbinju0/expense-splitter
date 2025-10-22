@@ -5,6 +5,8 @@ public class ExpenseValidator {
     // TODO (Issue 3): implement checks (payer nonblank, amount > 0, participants
     // nonempty, currency nonblank)
     // Keep empty for Phase 1.
-    System.out.println("hello!");
+    if (e.getPayer().isEmpty()) {
+      System.err.println("error!");
+    }
   }
 }
