@@ -19,5 +19,19 @@ public class ExpenseValidator {
       throw new IllegalArgumentException("Currency is Empty! Please add currency");
     }
 
+    if (e.getParticipants().isEmpty()) {
+        throw new IllegalArgumentException("Participants list cannot be empty.");
+    }
+
+    for (String participant : e.getParticipants()) {
+        if (participant.isBlank()) {
+            throw new IllegalArgumentException("Participant name cannot be blank.");
+        }
+    }
+
+    if (e.getDate().isBlank()) {
+        throw new IllegalArgumentException("Date cannot be blank.");
+    }
+
   }
 }
