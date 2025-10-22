@@ -7,7 +7,8 @@ public class ExpenseValidator {
     // TODO (Issue 3): implement checks (payer nonblank, amount > 0, participants
     // nonempty, currency nonblank)
     // Keep empty for Phase 1.
-    if (e.getPayer().isEmpty()) {
+    if (e.getPayer().isBlank()) {
+      // modify isEmpty -> isBlank: for more safe check !!
       throw new IllegalArgumentException("Payer is Empty! Pleases add payer");
     }
 
@@ -15,22 +16,23 @@ public class ExpenseValidator {
       throw new IllegalArgumentException("Amount should be larger than 0");
     }
 
-    if (e.getCurrency().isEmpty()) {
+    if (e.getCurrency().isBlank()) {
+      // modify isEmpty -> isBlank: for more safe check!!
       throw new IllegalArgumentException("Currency is Empty! Please add currency");
     }
 
     if (e.getParticipants().isEmpty()) {
-        throw new IllegalArgumentException("Participants list cannot be empty.");
+      throw new IllegalArgumentException("Participants list cannot be empty.");
     }
 
     for (String participant : e.getParticipants()) {
-        if (participant.isBlank()) {
-            throw new IllegalArgumentException("Participant name cannot be blank.");
-        }
+      if (participant.isBlank()) {
+        throw new IllegalArgumentException("Participant name cannot be blank.");
+      }
     }
 
     if (e.getDate().isBlank()) {
-        throw new IllegalArgumentException("Date cannot be blank.");
+      throw new IllegalArgumentException("Date cannot be blank.");
     }
 
   }
