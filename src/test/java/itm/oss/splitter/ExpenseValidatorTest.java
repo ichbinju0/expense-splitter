@@ -27,8 +27,24 @@ public class ExpenseValidatorTest {
     }
 
     /**
+     * Happy Path test
+     * Checks valid case with multiple participants
+     */
+    @Test
+    @DisplayName("Valid case with multiple participants")
+    void testValidMultipleParticipants() {
+        Expense e = new Expense("2025-10-23", "Soyeon", new BigDecimal("250.00"),
+                "EUR", new ArrayList<>(Arrays.asList("Juyoung", "Gyeongyoon", "Sihwan")),
+                "OSS Team Project", "Dinner together");
+        boolean result = isValid(e);
+        assertTrue(result, "Valid expense with multiple participants should pass validation");
+    }
+
+
+
+    /**
      * Edge Case test
-     * Checks blank expense
+     * Checks blank payer
      */
     @Test
     @DisplayName("Blank payer should fail")
@@ -41,22 +57,67 @@ public class ExpenseValidatorTest {
 
     /**
      * Edge Case test
+     * Checks null payer
+     */
+    @Test
+    @DisplayName("Null payer should fail")
+    void testNullPayer() {
+        Expense e = new Expense("2025-10-23", null, new BigDecimal("100.00"),
+                "USD", new ArrayList<>(Arrays.asList("Moon Hyun Bin")), "Food", "nongmin sundae");
+        boolean result = isValid(e);
+        assertFalse(result, "Payer is Empty! Please add payer");
+    }
+
+
+    /**
+     * Edge Case test
      * Checks zero or negative expense 
      */
     @Test
     @DisplayName("Zero or negative amount should fail")
     void testZeroOrNegativeAmount() {
         // 1. zero amount
-        Expense e1 = new Expense("2025-10-23", "Gyeoungyoon", BigDecimal.ZERO,
+        Expense e1 = new Expense("2025-10-23", "Gyeongyoon", BigDecimal.ZERO,
                 "USD", new ArrayList<>(Arrays.asList("Karina")), "Food", "fresh food");
         // 2. negative amount.
         Expense e2 = new Expense("2025-10-23", "RM", new BigDecimal("-10.00"),
-                "USD", new ArrayList<>(Arrays.asList("Jin")), "Food", "Snack");
+                "USD", new ArrayList<>(Arrays.asList("Moon Dong Ju")), "Food", "Snack");
 
         // isValid() should be false
         assertFalse(isValid(e1), "Amount should be larger than 0");
         assertFalse(isValid(e2), "Amount should be larger than 0");
     }
+
+
+    /**
+     * Edge Case test
+     * Checks null amount
+     */
+    @Test
+    @DisplayName("Null amount should fail")
+    void testNullAmount() {
+        Expense e = new Expense("2025-10-23", "Gyeongyoon", null,
+                "USD", new ArrayList<>(Arrays.asList("Jung Woo Joo")), "Food", "Lunch");
+        boolean result = isValid(e);
+        assertFalse(result, "Amount should be larger than 0");
+    }
+
+    /**
+     * Edge Case test
+     * Checks null participant name
+     */
+    @Test
+    @DisplayName("Null participant name should fail")
+    void testNullParticipantName() {
+        ArrayList<String> participants = new ArrayList<>();
+        participants.add(null);
+        participants.add("Soyeon");
+        Expense e = new Expense("2025-10-23", "Lee Yongil", new BigDecimal("100.00"),
+                "USD", participants, "Study", "CS Project");
+        boolean result = isValid(e);
+        assertFalse(result, "Participant name cannot be blank.");
+    }
+
 
     /**
      * Edge Case test
@@ -69,6 +130,19 @@ public class ExpenseValidatorTest {
                 "", new ArrayList<>(Arrays.asList("Bob")), "IT", "notebook");
         boolean result = isValid(e);
         // result should be false
+        assertFalse(result, "Currency is Empty! Please add currency");
+    }
+
+    /**
+     * Edge Case test
+     * Checks null currency
+     */
+    @Test
+    @DisplayName("Null currency should fail")
+    void testNullCurrency() {
+        Expense e = new Expense("2025-10-23", "Juyoung", new BigDecimal("100.00"),
+                null, new ArrayList<>(Arrays.asList("Gyeongyoon")), "Travel", "Ticket");
+        boolean result = isValid(e);
         assertFalse(result, "Currency is Empty! Please add currency");
     }
 
@@ -92,7 +166,7 @@ public class ExpenseValidatorTest {
      */
     @Test
     @DisplayName("Blank participant name should fail")
-    void testBlankParticipant() {
+    void testBlankParticipantName() {
         Expense e = new Expense("2025-10-23", "G-Dragon", new BigDecimal("100.00"),
                 "USD", new ArrayList<>(Arrays.asList("Bob", "")), "Music", "headphone");
         boolean result = isValid(e);
@@ -111,6 +185,19 @@ public class ExpenseValidatorTest {
                 "USD", new ArrayList<>(Arrays.asList("Gyeong yoon")), "Cosmetic", "BB cream");
         boolean result = isValid(e);
         // result should be false.
+        assertFalse(result, "Date cannot be blank.");
+    }
+    
+    /**
+     * Edge Case test
+     * Checks null date
+     */
+    @Test
+    @DisplayName("Null date should fail")
+    void testNullDate() {
+        Expense e = new Expense(null, "RM", new BigDecimal("100.00"),
+                "USD", new ArrayList<>(Arrays.asList("Jin")), "Music", "Concert");
+        boolean result = isValid(e);
         assertFalse(result, "Date cannot be blank.");
     }
 
