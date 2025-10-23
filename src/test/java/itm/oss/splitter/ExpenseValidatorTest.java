@@ -28,7 +28,7 @@ public class ExpenseValidatorTest {
 
     /**
      * Happy Path test
-     * Checks valid case with multiple participants
+     * Checks validvexpense case with multiple participants
      */
     @Test
     @DisplayName("Valid case with multiple participants")
@@ -36,7 +36,7 @@ public class ExpenseValidatorTest {
         Expense e = new Expense("2025-10-23", "Soyeon", new BigDecimal("250.00"),
                 "EUR", new ArrayList<>(Arrays.asList("Juyoung", "Gyeongyoon", "Sihwan")),
                 "OSS Team Project", "Dinner together");
-        boolean result = isValid(e);
+        boolean result = isValid(e); //result should be true
         assertTrue(result, "Valid expense with multiple participants should pass validation");
     }
 
@@ -64,7 +64,7 @@ public class ExpenseValidatorTest {
     void testNullPayer() {
         Expense e = new Expense("2025-10-23", null, new BigDecimal("100.00"),
                 "USD", new ArrayList<>(Arrays.asList("Moon Hyun Bin")), "Food", "nongmin sundae");
-        boolean result = isValid(e);
+        boolean result = isValid(e); //result should be false
         assertFalse(result, "Payer is Empty! Please add payer");
     }
 
@@ -79,7 +79,7 @@ public class ExpenseValidatorTest {
         // 1. zero amount
         Expense e1 = new Expense("2025-10-23", "Gyeongyoon", BigDecimal.ZERO,
                 "USD", new ArrayList<>(Arrays.asList("Karina")), "Food", "fresh food");
-        // 2. negative amount.
+        // 2. negative amount
         Expense e2 = new Expense("2025-10-23", "RM", new BigDecimal("-10.00"),
                 "USD", new ArrayList<>(Arrays.asList("Moon Dong Ju")), "Food", "Snack");
 
@@ -98,7 +98,7 @@ public class ExpenseValidatorTest {
     void testNullAmount() {
         Expense e = new Expense("2025-10-23", "Gyeongyoon", null,
                 "USD", new ArrayList<>(Arrays.asList("Jung Woo Joo")), "Food", "Lunch");
-        boolean result = isValid(e);
+        boolean result = isValid(e); //result should be false
         assertFalse(result, "Amount should be larger than 0");
     }
 
@@ -114,7 +114,7 @@ public class ExpenseValidatorTest {
         participants.add("Soyeon");
         Expense e = new Expense("2025-10-23", "Lee Yongil", new BigDecimal("100.00"),
                 "USD", participants, "Study", "CS Project");
-        boolean result = isValid(e);
+        boolean result = isValid(e); //result should be false
         assertFalse(result, "Participant name cannot be blank.");
     }
 
@@ -128,8 +128,7 @@ public class ExpenseValidatorTest {
     void testBlankCurrency() {
         Expense e = new Expense("2025-10-23", "Obregon", new BigDecimal("100.00"),
                 "", new ArrayList<>(Arrays.asList("Bob")), "IT", "notebook");
-        boolean result = isValid(e);
-        // result should be false
+        boolean result = isValid(e); // result should be false
         assertFalse(result, "Currency is Empty! Please add currency");
     }
 
@@ -142,7 +141,7 @@ public class ExpenseValidatorTest {
     void testNullCurrency() {
         Expense e = new Expense("2025-10-23", "Juyoung", new BigDecimal("100.00"),
                 null, new ArrayList<>(Arrays.asList("Gyeongyoon")), "Travel", "Ticket");
-        boolean result = isValid(e);
+        boolean result = isValid(e); //result should be false
         assertFalse(result, "Currency is Empty! Please add currency");
     }
 
@@ -155,8 +154,7 @@ public class ExpenseValidatorTest {
     void testEmptyParticipants() {
         Expense e = new Expense("2025-10-23", "kwon hyeok yoon", new BigDecimal("100.00"),
                 "USD", new ArrayList<>(), "IT", "PC");
-        boolean result = isValid(e);
-        // result should be false.
+        boolean result = isValid(e); // result should be false.
         assertFalse(result, "Participants list cannot be empty.");
     }
 
@@ -169,8 +167,7 @@ public class ExpenseValidatorTest {
     void testBlankParticipantName() {
         Expense e = new Expense("2025-10-23", "G-Dragon", new BigDecimal("100.00"),
                 "USD", new ArrayList<>(Arrays.asList("Bob", "")), "Music", "headphone");
-        boolean result = isValid(e);
-        // result should be false.
+        boolean result = isValid(e); // result should be false.
         assertFalse(result, "Participant name cannot be blank.");
     }
 
@@ -183,8 +180,7 @@ public class ExpenseValidatorTest {
     void testBlankDate() {
         Expense e = new Expense("", "Soyeon", new BigDecimal("100.00"),
                 "USD", new ArrayList<>(Arrays.asList("Gyeong yoon")), "Cosmetic", "BB cream");
-        boolean result = isValid(e);
-        // result should be false.
+        boolean result = isValid(e); // result should be false.
         assertFalse(result, "Date cannot be blank.");
     }
     
@@ -197,7 +193,7 @@ public class ExpenseValidatorTest {
     void testNullDate() {
         Expense e = new Expense(null, "RM", new BigDecimal("100.00"),
                 "USD", new ArrayList<>(Arrays.asList("Jin")), "Music", "Concert");
-        boolean result = isValid(e);
+        boolean result = isValid(e); //result should be false
         assertFalse(result, "Date cannot be blank.");
     }
 
