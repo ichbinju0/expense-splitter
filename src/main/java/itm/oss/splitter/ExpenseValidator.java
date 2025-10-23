@@ -10,6 +10,7 @@ public class ExpenseValidator {
     // check if payer is nonblank and not null
     if (e == null || e.getPayer().isBlank()) {
       throw new IllegalArgumentException("Payer is Empty! Please add payer");
+
     }
 
     // check if amount is bigger than zero and amount is not null
