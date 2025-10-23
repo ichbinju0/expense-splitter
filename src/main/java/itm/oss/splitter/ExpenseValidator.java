@@ -6,11 +6,11 @@ public class ExpenseValidator {
   public static void validate(Expense e) {
     // TODO (Issue 3): implement checks (payer nonblank, amount > 0, participants
     // nonempty, currency nonblank)
-
+    
     // Checking if payer is empty
     if (e == null || e.getPayer().isBlank()) {
       // modify isEmpty -> isBlank: for more safe check !!
-      throw new IllegalArgumentException("Payer is Empty! Please add payer");
+      throw new IllegalArgumentException("Payer is Empty! Please add payer"); 
     }
 
     // Checking if amount is larger than 0
