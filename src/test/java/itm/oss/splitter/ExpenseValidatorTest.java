@@ -19,27 +19,27 @@ public class ExpenseValidatorTest {
     @Test
     @DisplayName("Valid expense should be valid")
     void validExpense() {
-        // Valid expense
+        // Valid expense object creation
         Expense e = new Expense("2025-10-23", "Juyoung", new BigDecimal("100.00"),
                 "USD", new ArrayList<>(Arrays.asList("Obregon", "Soyeon")), "Food", "Lunch");
-        boolean result = isValid(e); //used isValid method to simplify code , result should be true
-        assertTrue(result, "Valid expense should pass validation");
+        // Verify that validation runs successfully without throwing any exception
+        assertDoesNotThrow(() -> ExpenseValidator.validate(e), "Valid expense should pass validation");
     }
 
     /**
      * Happy Path test
-     * Checks validvexpense case with multiple participants
+     * Checks valid expense case with multiple participants
      */
     @Test
     @DisplayName("Valid case with multiple participants")
     void testValidMultipleParticipants() {
+        // Expense with multiple valid participants
         Expense e = new Expense("2025-10-23", "Soyeon", new BigDecimal("250.00"),
                 "EUR", new ArrayList<>(Arrays.asList("Juyoung", "Gyeongyoon", "Sihwan")),
                 "OSS Team Project", "Dinner together");
-        boolean result = isValid(e); //result should be true
-        assertTrue(result, "Valid expense with multiple participants should pass validation");
+        // Verify that validation runs successfully
+        assertDoesNotThrow(() -> ExpenseValidator.validate(e), "Valid expense with multiple participants should pass validation");
     }
-
 
 
     /**
@@ -51,8 +51,12 @@ public class ExpenseValidatorTest {
     void testBlankPayer() {
         Expense e = new Expense("2025-10-23", "", new BigDecimal("100.00"),
                 "USD", new ArrayList<>(Arrays.asList("Winter")), "Food", "fresh food");
-        boolean result = isValid(e); //result should be false
-        assertFalse(result, "Payer is Empty! Please add payer");
+
+        // Verify that IllegalArgumentException is thrown
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
+                () -> ExpenseValidator.validate(e));
+        // Verify the specific error message content
+        assertEquals("Payer is Empty! Please add payer", thrown.getMessage());
     }
 
     /**
@@ -64,14 +68,17 @@ public class ExpenseValidatorTest {
     void testNullPayer() {
         Expense e = new Expense("2025-10-23", null, new BigDecimal("100.00"),
                 "USD", new ArrayList<>(Arrays.asList("Moon Hyun Bin")), "Food", "nongmin sundae");
-        boolean result = isValid(e); //result should be false
-        assertFalse(result, "Payer is Empty! Please add payer");
-    }
 
+        // Verify that IllegalArgumentException is thrown
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
+                () -> ExpenseValidator.validate(e));
+        // Verify the specific error message content
+        assertEquals("Payer is Empty! Please add payer", thrown.getMessage());
+    }
 
     /**
      * Edge Case test
-     * Checks zero or negative expense 
+     * Checks zero or negative expense amount
      */
     @Test
     @DisplayName("Zero or negative amount should fail")
@@ -83,11 +90,16 @@ public class ExpenseValidatorTest {
         Expense e2 = new Expense("2025-10-23", "RM", new BigDecimal("-10.00"),
                 "USD", new ArrayList<>(Arrays.asList("Moon Dong Ju")), "Food", "Snack");
 
-        // isValid() should be false
-        assertFalse(isValid(e1), "Amount should be larger than 0");
-        assertFalse(isValid(e2), "Amount should be larger than 0");
-    }
+        // Verify exception and message for zero amount
+        IllegalArgumentException thrown1 = assertThrows(IllegalArgumentException.class,
+                () -> ExpenseValidator.validate(e1));
+        assertEquals("Amount should be larger than 0", thrown1.getMessage());
 
+        // Verify exception and message for negative amount
+        IllegalArgumentException thrown2 = assertThrows(IllegalArgumentException.class,
+                () -> ExpenseValidator.validate(e2));
+        assertEquals("Amount should be larger than 0", thrown2.getMessage());
+    }
 
     /**
      * Edge Case test
@@ -98,26 +110,31 @@ public class ExpenseValidatorTest {
     void testNullAmount() {
         Expense e = new Expense("2025-10-23", "Gyeongyoon", null,
                 "USD", new ArrayList<>(Arrays.asList("Jung Woo Joo")), "Food", "Lunch");
-        boolean result = isValid(e); //result should be false
-        assertFalse(result, "Amount should be larger than 0");
+
+        // Verify exception and message
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
+                () -> ExpenseValidator.validate(e));
+        assertEquals("Amount should be larger than 0", thrown.getMessage());
     }
 
     /**
      * Edge Case test
-     * Checks null participant name
+     * Checks null participant name within the list
      */
     @Test
     @DisplayName("Null participant name should fail")
     void testNullParticipantName() {
         ArrayList<String> participants = new ArrayList<>();
-        participants.add(null);
+        participants.add(null); // Contains null
         participants.add("Soyeon");
         Expense e = new Expense("2025-10-23", "Lee Yongil", new BigDecimal("100.00"),
                 "USD", participants, "Study", "CS Project");
-        boolean result = isValid(e); //result should be false
-        assertFalse(result, "Participant name cannot be blank.");
-    }
 
+        // Verify exception and message
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
+                () -> ExpenseValidator.validate(e));
+        assertEquals("Participant name cannot be blank.", thrown.getMessage());
+    }
 
     /**
      * Edge Case test
@@ -128,8 +145,11 @@ public class ExpenseValidatorTest {
     void testBlankCurrency() {
         Expense e = new Expense("2025-10-23", "Obregon", new BigDecimal("100.00"),
                 "", new ArrayList<>(Arrays.asList("Bob")), "IT", "notebook");
-        boolean result = isValid(e); // result should be false
-        assertFalse(result, "Currency is Empty! Please add currency");
+
+        // Verify exception and message
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
+                () -> ExpenseValidator.validate(e));
+        assertEquals("Currency is Empty! Please add currency", thrown.getMessage());
     }
 
     /**
@@ -141,8 +161,11 @@ public class ExpenseValidatorTest {
     void testNullCurrency() {
         Expense e = new Expense("2025-10-23", "Juyoung", new BigDecimal("100.00"),
                 null, new ArrayList<>(Arrays.asList("Gyeongyoon")), "Travel", "Ticket");
-        boolean result = isValid(e); //result should be false
-        assertFalse(result, "Currency is Empty! Please add currency");
+
+        // Verify exception and message
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
+                () -> ExpenseValidator.validate(e));
+        assertEquals("Currency is Empty! Please add currency", thrown.getMessage());
     }
 
     /**
@@ -154,8 +177,11 @@ public class ExpenseValidatorTest {
     void testEmptyParticipants() {
         Expense e = new Expense("2025-10-23", "kwon hyeok yoon", new BigDecimal("100.00"),
                 "USD", new ArrayList<>(), "IT", "PC");
-        boolean result = isValid(e); // result should be false.
-        assertFalse(result, "Participants list cannot be empty.");
+
+        // Verify exception and message
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
+                () -> ExpenseValidator.validate(e));
+        assertEquals("Participants list cannot be empty.", thrown.getMessage());
     }
 
     /**
@@ -167,8 +193,11 @@ public class ExpenseValidatorTest {
     void testBlankParticipantName() {
         Expense e = new Expense("2025-10-23", "G-Dragon", new BigDecimal("100.00"),
                 "USD", new ArrayList<>(Arrays.asList("Bob", "")), "Music", "headphone");
-        boolean result = isValid(e); // result should be false.
-        assertFalse(result, "Participant name cannot be blank.");
+
+        // Verify exception and message
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
+                () -> ExpenseValidator.validate(e));
+        assertEquals("Participant name cannot be blank.", thrown.getMessage());
     }
 
     /**
@@ -180,10 +209,13 @@ public class ExpenseValidatorTest {
     void testBlankDate() {
         Expense e = new Expense("", "Soyeon", new BigDecimal("100.00"),
                 "USD", new ArrayList<>(Arrays.asList("Gyeong yoon")), "Cosmetic", "BB cream");
-        boolean result = isValid(e); // result should be false.
-        assertFalse(result, "Date cannot be blank.");
+
+        // Verify exception and message
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
+                () -> ExpenseValidator.validate(e));
+        assertEquals("Date is Empty! Please add date", thrown.getMessage());
     }
-    
+
     /**
      * Edge Case test
      * Checks null date
@@ -193,10 +225,13 @@ public class ExpenseValidatorTest {
     void testNullDate() {
         Expense e = new Expense(null, "RM", new BigDecimal("100.00"),
                 "USD", new ArrayList<>(Arrays.asList("Jin")), "Music", "Concert");
-        boolean result = isValid(e); //result should be false
-        assertFalse(result, "Date cannot be blank.");
+
+        // Verify exception and message
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
+                () -> ExpenseValidator.validate(e));
+        assertEquals("Date is Empty! Please add date", thrown.getMessage());
     }
-    
+
     /**
      * Edge Case test
      * Checks null expense object
@@ -205,25 +240,10 @@ public class ExpenseValidatorTest {
     @DisplayName("Null expense object should fail")
     void testNullExpenseObject() {
         Expense e = null;
-        boolean result = isValid(e); // result should be false
-        assertFalse(result, "Expense object cannot be null");
-    }
 
-    /**
-     * <<Helper method isValid()>>
-     * 
-     * Checks if an expense is valid.
-     * Calls ExpenseValidator.validate() inside a try-catch block.
-     *
-     * @param e the Expense object to check
-     * @return true if valid (no error), false if invalid (an error was thrown).
-     */
-    private boolean isValid(Expense e) {
-        try {
-            ExpenseValidator.validate(e); // calling validation method
-            return true; // if no exception, return true
-        } catch (Exception ex) {
-            return false; // if exception (IllegalArgumentException) happens, return false
-        }
+        // Verify exception and message
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
+                () -> ExpenseValidator.validate(e));
+        assertEquals("Expense cannot be null.", thrown.getMessage());
     }
 }
