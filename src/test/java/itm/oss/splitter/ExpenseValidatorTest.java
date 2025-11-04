@@ -196,6 +196,18 @@ public class ExpenseValidatorTest {
         boolean result = isValid(e); //result should be false
         assertFalse(result, "Date cannot be blank.");
     }
+    
+    /**
+     * Edge Case test
+     * Checks null expense object
+     */
+    @Test
+    @DisplayName("Null expense object should fail")
+    void testNullExpenseObject() {
+        Expense e = null;
+        boolean result = isValid(e); // result should be false
+        assertFalse(result, "Expense object cannot be null");
+    }
 
     /**
      * <<Helper method isValid()>>
